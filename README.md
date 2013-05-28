@@ -6,7 +6,7 @@ Regret aims to be completely full-stack, responsible for the entire ML system fr
 
 ## Project goals
 
-Our core goal is to handle as many of the "mundane" things (*e.g.*, data persistence) as possible in the course of declaring all the "normal" things about your model (*e.g.*, your features and their types).
+Our core goal is to handle as many of the "mundane" things (e.g., data persistence) as possible in the course of declaring all the "normal" things about your model (e.g., your features and their types).
 
 Other goals include:
 
@@ -16,7 +16,7 @@ Other goals include:
 
 * **Compatible with robust, expressive modeling tools.** Rather than reinventing the wheel, regret seeks to be compatible with familiar tools like [Mahout](http://mahout.apache.org/). The large number of ML libraries available for JVM languages is one of the reasons regret is built on the JVM.
 
-* **Separation between "dev" mode and "production" mode.** In production, the goal is mainly to make the system respond quickly. In development, it is generally more important for the system to make debugging and profiling easy (*e.g.*, by turning off caching and producing much more thorough logs). Since these modes are not the same, it is important that regret provide a formal distinction between them.
+* **Separation between "dev" mode and "production" mode.** In production, the goal is mainly to make the system respond quickly. In development, it is generally more important for the system to make debugging and profiling easy (e.g., by turning off caching and producing much more thorough logs). Since these modes are not the same, it is important that regret provide a formal distinction between them.
 
 * **Easy to transition between prototype and production.** We believe that a developer should be able to prototype the system on a laptop, and then `git push` to send the repot to a distant cluster that simply flips a switch and scales the system accordingly.
 

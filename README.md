@@ -35,6 +35,11 @@ Other goals include:
 * **Handles multiresolutional data, tabular data, relational data, etc.** This is all down the line but also important.
 
 
+## Why is it called "regret"?
+
+The measurement that tells you how well a streaming ML algorithm works is called regret. We are into things that are poetically ironic.
+
+
 
 ## License
 

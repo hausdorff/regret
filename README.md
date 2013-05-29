@@ -4,6 +4,12 @@
 
 Regret aims to be completely full-stack, responsible for the entire ML system from data ingest, to cleaning, to storage, to prediction, and so on. Regret emphasizes use of design principles like [active record](http://en.wikipedia.org/wiki/Active_record_pattern), [convention over configuration](http://en.wikipedia.org/wiki/Convention_over_configuration), and [don't repeat yourself](http://en.wikipedia.org/wiki/Convention_over_configuration) so that as much of the cruft as possible is hidden, freeing the programmer to concentrate on iterating the model.
 
+| Contents |
+|:-------- |
+| [Project Goals](https://github.com/hausdorff/regret#project-goals)|
+| [Why is it called "regret"?](https://github.com/hausdorff/regret#why-is-it-called-regret)|
+| [Licence](https://github.com/hausdorff/regret#license)|
+
 ## Project goals
 
 Our core goal is to handle as many of the "mundane" things (e.g., data persistence) as possible in the course of declaring all the "normal" things about your model (e.g., your features and their types).

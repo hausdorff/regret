@@ -7,8 +7,9 @@ Regret aims to be completely full-stack, responsible for the entire ML system fr
 |      | Contents |
 | :--- |:-------- |
 | 1    | [Project Goals](https://github.com/hausdorff/regret#project-goals)|
-| 2    | [Why is it called "regret"?](https://github.com/hausdorff/regret#why-is-it-called-regret)|
-| 3    | [Licence](https://github.com/hausdorff/regret#license)|
+| 2    | [Pipeline](https://github.com/hausdorff/regret#pipeline)|
+| 3    | [Why is it called "regret"?](https://github.com/hausdorff/regret#why-is-it-called-regret)|
+| 4    | [Licence](https://github.com/hausdorff/regret#license)|
 
 ## Project goals
 
@@ -40,6 +41,10 @@ Other goals include:
 
 * **Handles multiresolutional data, tabular data, relational data, etc.** This is all down the line but also important.
 
+
+## Pipeline
+
+![control flow](doc/images/diagram_small.png)
 
 ## Why is it called "regret"?
 

@@ -1,6 +1,17 @@
 (ns regret.cli
   (:use [clojure.core.match :only [match]]))
 
+;; shell utilities, possible to be moved to another file
+(def red "\033[31m")
+(def green "\033[32m")
+(def bold "\033[1m")
+(def resetter "\033[0m")
+
+(defn println-reset [& strings]
+  (doseq [s strings]
+    (print s))
+  (println resetter))
+
 ;; Tree representing the app directory
 (def app-dir `("app/" ("resources/")
                       ("consumers/")
@@ -35,13 +46,6 @@
     (println msg)
     (System/exit 1)))
 
-(defn print-created [created folders]
-  "Prints all successfully created directories in bold green; those that
-  already existed are printed in normalface white."
-  (doall (map #(if %1 (println "\033[1m\033[32m" %2 "\033[0m") (println %2))
-              created folders))
-  nil)
-
 (defn generate [module-type names]
   "Generates module in current regret project"
   ; TODO: check that we're in a regret project!
@@ -55,18 +59,22 @@
          ["model" false] (println "generate model!")
          ["predictor" false] (println "generate predictor!")))
 
+(defn get-pwd []
+  (str (System/getProperty "user.dir") "/"))
+
+(defn make-folders [name]
+  (doseq [relpath (dir-folders (str name "/"))]
+    (if (.mkdir (java.io.File. (str (get-pwd) relpath)))
+      (println-reset green relpath)
+      (println-reset red bold relpath))))
+
 (defn new-proj [name]
   "Generates new regret module (eg, model, resource...). Takes a project name
   as a string, creates directory, returns."
   ; TODO: generate files in addition to just folders.
-  (match [name]
-         [nil] (invalid-cmd-err "usage: regret new [project name]")
-         :else (let [pwd (str (System/getProperty "user.dir") "/" name "/")
-                     fullpath-folders (dir-folders pwd) ; for calls to mkdir
-                     relpath-folders (dir-folders (str name "/")) ;for printing
-                     created (map #(.mkdir (java.io.File. %))
-                                  fullpath-folders)]
-                 (print-created created relpath-folders))))
+  (if (nil? name)
+    (invalid-cmd-err "usage: regret new [project name]")
+    (make-folders name)))
 
 (defn proc-args [[command & opts]]
   "Poor man's cl processing. No flags, just looks for and processes commands"

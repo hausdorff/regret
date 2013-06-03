@@ -68,12 +68,10 @@
                                   fullpath-folders)]
                  (print-created created relpath-folders))))
 
-(defn proc-args [args]
+(defn proc-args [[command & opts]]
   "Poor man's cl processing. No flags, just looks for and processes commands"
-  (let [command (first args)
-        opts (rest args)]
-    (match [command]
-           ["generate"] (generate (first opts) (rest opts))
-           ["new"] (new-proj (first opts))
-           [nil] (invalid-cmd-err "regret requires a command to be entered")
-           :else (invalid-cmd-err (str "unknown command " command)))))
+  (case command
+    "generate" (generate (first opts) (rest opts))
+    "new"      (new-proj (first opts))
+    nil        (invalid-cmd-err "regret requires a command to be entered")
+    (invalid-cmd-err (str "unknown command " command))))

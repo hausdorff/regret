@@ -7,5 +7,6 @@
             :url "http://github.com/hausdorff/regret/blob/master/LICENSE"}
   :dependencies [[org.apache.mahout/mahout-core "0.7"]
                  [org.clojure/clojure "1.4.0"]
-                 [org.clojure/core.match "0.2.0-alpha12"]]
+                 [org.clojure/core.match "0.2.0-alpha12"]
+                 [storm/storm-lib "0.8.2"]]
   :main regret.core)

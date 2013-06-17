@@ -1,5 +1,5 @@
 (ns regret.cli
-  (:use [clojure.core.match :only [match]]))
+  (:require [clojure.core.match :refer [match]]))
 
 ;; Tree representing the app directory
 (def app-dir `("app/" ("resources/")

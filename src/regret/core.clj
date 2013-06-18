@@ -2,4 +2,7 @@
   (:require [regret.cli :as cli]))
 
 (defn -main [& args]
-  (cli/proc-args args))
+  (try
+    (cli/proc-args args)
+    (catch IllegalArgumentException e
+      (System/exit 1))))

@@ -35,16 +35,17 @@
   ([tree fullpath]
    (let [pwd (str fullpath (first tree))
          subtree (rest tree)]
-     (match [(count subtree)]
-            [0] `(~pwd)
-            :else (cons pwd (flatten (map #(dir-folders % pwd) subtree)))))))
+     (if (zero? (count subtree))
+       `(~pwd)
+       (cons pwd (flatten (map #(dir-folders % pwd) subtree)))))))
 
 
-(defn invalid-cmd-err [msg]
-  "Print error message, exit program"
+(defn invalid-cmd-err
+  "Print error message, throw exception indicating illegal command line arg"
+  [msg]
   (do
-    (println msg)
-    (System/exit 1)))
+    (println-reset red bold msg)
+    (throw (IllegalArgumentException. "invalid command line argument"))))
 
 (defn generate [module-type names]
   "Generates module in current regret project"

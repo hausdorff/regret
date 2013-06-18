@@ -41,7 +41,7 @@
   "Print error message, throw exception indicating illegal command line arg"
   [msg]
   (do
-    (println-reset red bold msg)
+    (println msg)
     (throw (IllegalArgumentException. "invalid command line argument"))))
 
 (defn generate
@@ -83,5 +83,6 @@
   (case command
     "generate" (generate (first opts) (rest opts))
     "new"      (new-proj (first opts))
-    nil        (invalid-cmd-err "regret requires a command to be entered")
+    nil        (invalid-cmd-err (str "regret requires a command to be entered\n"
+                                     "TODO: tell about different commands"))
     (invalid-cmd-err (str "unknown command " command))))

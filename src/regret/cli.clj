@@ -50,14 +50,15 @@
   "Generates module in current regret project"
   ; TODO: check that we're in a regret project!
   ; TODO: actually write code to generate all this
-  (match [module-type (< (count names) 1)]
-         [_ true] (invalid-cmd-err
-                (str "invalid number of args\n"
-                     "usage: regret generate [type] [list of names]"))
-         ["resource" false] (println "generate resource!")
-         ["consumer" false] (println "generate consumer!")
-         ["model" false] (println "generate model!")
-         ["predictor" false] (println "generate predictor!")))
+  (if (< (count names) 1)
+    (invalid-cmd-err
+     (str "invalid number of args\n"
+          "usage: regret generate [type] [list of names]"))
+    (case module-type
+      "resource"  (println "generate resource!")
+      "consumer"  (println "generate consumer!")
+      "model"     (println "generate model!")
+      "predictor" (println "generate predictor!"))))
 
 (defn get-pwd []
   (str (System/getProperty "user.dir") "/"))

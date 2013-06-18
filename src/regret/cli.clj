@@ -1,8 +1,5 @@
 (ns regret.cli
-  (:require [clojure.core.match :refer [match]]
-            [regret storm-test]))
-
-;(storm-test/run-local!)
+  (:require [clojure.core.match :refer [match]]))
 
 ;; shell utilities, possible to be moved to another file
 (def red "\033[31m")

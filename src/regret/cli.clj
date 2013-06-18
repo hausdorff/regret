@@ -1,5 +1,8 @@
 (ns regret.cli
-  (:require [clojure.core.match :refer [match]]))
+  (:require [clojure.core.match :refer [match]]
+            [regret storm-test]))
+
+;(storm-test/run-local!)
 
 ;; shell utilities, possible to be moved to another file
 (def red "\033[31m")
@@ -25,20 +28,20 @@
   "Generates tree of project directory rooted at `root`"
   (cons root proj-folders))
 
-(defn- dir-folders' [tree fullpath]
-  "Recursive helper constructs list containing all the folders in directory.
+(defn dir-folders
+  "Constructs list containing all the folders in directory.
   Guaranteed to list a directory *before* the files and folders in it, making
   it safe to use `map` to generate them in the order they appear."
-  (let [pwd (str fullpath (first tree))
-        subtree (rest tree)]
-    (match [(count subtree)]
-           [0] `(~pwd)
-           :else (cons pwd (flatten (map #(dir-folders' % pwd) subtree))))))
+  ([root]
+   (let [tree (dirtree root)]
+     (dir-folders tree "")))
+  ([tree fullpath]
+   (let [pwd (str fullpath (first tree))
+         subtree (rest tree)]
+     (match [(count subtree)]
+            [0] `(~pwd)
+            :else (cons pwd (flatten (map #(dir-folders % pwd) subtree)))))))
 
-(defn dir-folders [root]
-  "Constructs a list containing all the folders in the directory"
-  (let [tree (dirtree root)]
-    (dir-folders' tree "")))
 
 (defn invalid-cmd-err [msg]
   "Print error message, exit program"

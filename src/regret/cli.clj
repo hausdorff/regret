@@ -47,8 +47,9 @@
     (println-reset red bold msg)
     (throw (IllegalArgumentException. "invalid command line argument"))))
 
-(defn generate [module-type names]
+(defn generate
   "Generates module in current regret project"
+  [module-type names]
   ; TODO: check that we're in a regret project!
   ; TODO: actually write code to generate all this
   (if (< (count names) 1)
@@ -70,16 +71,18 @@
       (println-reset green relpath)
       (println relpath))))
 
-(defn new-proj [name]
+(defn new-proj
   "Generates new regret module (eg, model, resource...). Takes a project name
   as a string, creates directory, returns."
+  [name]
   ; TODO: generate files in addition to just folders.
   (if (nil? name)
     (invalid-cmd-err "usage: regret new [project name]")
     (make-folders name)))
 
-(defn proc-args [[command & opts]]
+(defn proc-args
   "Poor man's cl processing. No flags, just looks for and processes commands"
+  [[command & opts]]
   (case command
     "generate" (generate (first opts) (rest opts))
     "new"      (new-proj (first opts))

@@ -69,7 +69,7 @@
   (doseq [relpath (dir-folders (str name "/"))]
     (if (.mkdir (java.io.File. (str (get-pwd) relpath)))
       (println-reset green relpath)
-      (println-reset red bold relpath))))
+      (println relpath))))
 
 (defn new-proj [name]
   "Generates new regret module (eg, model, resource...). Takes a project name

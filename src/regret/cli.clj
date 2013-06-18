@@ -21,12 +21,9 @@
                       ("models/")
                       ("predictors/")))
 
-;; List of all the folders in the project
-(def proj-folders `(~app-dir))
-
 (defn dirtree [root]
   "Generates tree of project directory rooted at `root`"
-  (cons root proj-folders))
+  (cons root (list app-dir)))
 
 (defn dir-folders
   "Constructs list containing all the folders in directory.
